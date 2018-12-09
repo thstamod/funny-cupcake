@@ -1,0 +1,62 @@
+{
+  "name": "funny-cupcake",
+  "version": "1.0.0",
+  "description": " A boilerplate for beautifying js and css ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch_source": "grunt watch_source",
+    "js_main_prepare_prod_no_lint": "grunt js_main_prepare_prod_no_lint",
+    "js_main_prepare_prod": "grunt js_main_prepare_prod",
+    "css_prepare_prod": "grunt css_prepare_prod",
+    "start": "http-server ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thstamod/funny-cupcake.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "css",
+    "js",
+    "grunt"
+  ],
+  "author": "thanos stamodimos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thstamod/funny-cupcake/issues"
+  },
+  "homepage": "https://github.com/thstamod/funny-cupcake#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "acorn": "^6.0.4",
+    "autoprefixer": "^9.3.1",
+    "eslint": "^5.9.0",
+    "find-unused-sass-variables": "^0.3.1",
+    "grunt": "^1.0.3",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-concat-css": "^0.3.2",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-eslint": "^21.0.0",
+    "grunt-rollup": "^9.0.0",
+    "grunt-sass": "^3.0.2",
+    "grunt-stylelint": "^0.10.1",
+    "http-server": "^0.11.1",
+    "load-grunt-tasks": "^4.0.0",
+    "node-sass": "^4.10.0",
+    "nodemon": "^1.18.7",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.0.1",
+    "postcss-loader": "^3.0.0",
+    "rollup-plugin-babel": "^4.0.3",
+    "sass-loader": "^7.1.0",
+    "stylelint": "^9.9.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^2.0.0",
+    "stylelint-scss": "^3.4.0"
+  }
+}
