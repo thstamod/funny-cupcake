@@ -59,3 +59,7 @@ typings/
 
 #custom
 __del
+
+__test\.js
+
+__test2\.js
