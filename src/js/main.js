@@ -121,7 +121,7 @@
           }
         }
 
-        const displayToast = () => {
+        const displayfunnyCupcake = () => {
           $funnyCupcakeElement.hide()
           $funnyCupcakeElement[options.showAnimation.method]({
             duration: options.showAnimation.duration,
@@ -190,9 +190,6 @@
         }
 
         const hidefunnyCupcake = () => {
-          // if ($(':focus', $funnyCupcakeElement).length) {
-          //     return;
-          // }
           console.log($funnyCupcakeElement)
           return $funnyCupcakeElement[options.hideAnimation.method]({
             duration: options.hideAnimation.duration,
@@ -210,7 +207,7 @@
 
         addUserDisplayOptions()
 
-        displayToast()
+        displayfunnyCupcake()
 
         bindEvents()
 
