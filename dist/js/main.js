@@ -37,7 +37,7 @@
           warning: 'funnyCupcake-warning'
         },
         positionClass: 'funnyCupcake-top-right',
-        timeOut: 7000,
+        timeOut: 20000,
         // 0 --> sticky
         titleClass: 'funnyCupcake-title',
         messageClass: 'funnyCupcake-message',
@@ -260,7 +260,8 @@
       var funnyCupcake = {
         getContainer: getContainer,
         info: info,
-        options: {}
+        options: {},
+        removefunnyCupcake: removefunnyCupcake
       };
       return funnyCupcake;
     }();
@@ -277,6 +278,4 @@ typeof define === 'function' && define.amd ? define : function (deps, factory) {
     window.funnyCupcake = factory(window.jQuery);
   }
 }); // call
-
-
-funnyCupcake.info('test');
+// funnyCupcake.info('test')

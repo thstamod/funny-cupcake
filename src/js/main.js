@@ -36,7 +36,7 @@
           warning: 'funnyCupcake-warning'
         },
         positionClass: 'funnyCupcake-top-right',
-        timeOut: 7000, // 0 --> sticky
+        timeOut: 20000, // 0 --> sticky
         titleClass: 'funnyCupcake-title',
         messageClass: 'funnyCupcake-message',
         htmlTags: false,
@@ -256,7 +256,8 @@
       const funnyCupcake = {
         getContainer,
         info,
-        options: {}
+        options: {},
+        removefunnyCupcake
       }
 
       return funnyCupcake
@@ -276,4 +277,4 @@
     }
 ))
 // call
-funnyCupcake.info('test')
+// funnyCupcake.info('test')
