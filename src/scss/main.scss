@@ -1,1 +1,45 @@
-//
+@import "./variables";
+
+#funnyCupcake-container {
+  position: absolute;
+  &.funnyCupcake-top-left {
+    top: 20px;
+    left: 20px;
+  }
+  &.funnyCupcake-top-right {
+    top: 20px;
+    right: 20px;
+  }
+  &.funnyCupcake-bottom-left {
+    bottom: 20px;
+    left: 20px;
+  }
+  &.funnyCupcake-bottom-right {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .funnyCupcake {
+    position: relative;
+    display: flex;
+    min-width: 200px;
+    min-height: 60px;
+    &.funnyCupcake-info {
+      background-color: $bg-info;
+    }
+    &.funnyCupcake-error {
+      background-color: $bg-error;
+    }
+    &.funnyCupcake-success {
+      background-color: $bg-success;
+    }
+    &.funnyCupcake-warning {
+      background-color: $bg-warning;
+    }
+    .funnyCupcake-close-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

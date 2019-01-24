@@ -80,7 +80,7 @@
           options = $.extend(options, obj.userOptions)
           iconClass = obj.userOptions.iconClass || iconClass
         }
-
+        console.log(options)
         if (showDuplicates(options.showDuplicates, obj)) {
           return
         }
@@ -107,17 +107,19 @@
           }
 
           if (options.closeButton && $closeElement) {
-            $closeElement.click((event) => {
-              if (event.stopPropagation) {
-                event.stopPropagation()
-              } else if (
-                event.cancelBubble !== undefined &&
-                event.cancelBubble !== true
-              ) {
-                event.cancelBubble = true
-              }
-              hidefunnyCupcake()
-            })
+            $closeElement
+              .click((event) => {
+                if (event.stopPropagation) {
+                  event.stopPropagation()
+                } else if (
+                  event.cancelBubble !== undefined &&
+                  event.cancelBubble !== true
+                ) {
+                  event.cancelBubble = true
+                }
+                hidefunnyCupcake()
+              })
+              .addClass(options.closeButton)
           }
         }
 
@@ -264,7 +266,6 @@
   typeof define === 'function' && define.amd
     ? define
     : (deps, factory) => {
-      console.log(factory)
       if (typeof module !== 'undefined' && module.exports) {
         // Node
         module.exports = factory(require('jquery'))
@@ -274,4 +275,6 @@
     }
 ))
 // call
-// funnyCupcake.info('test')
+funnyCupcake.info('test', '', {
+  timeOut: 2000000000
+})

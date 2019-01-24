@@ -87,6 +87,8 @@
           iconClass = obj.userOptions.iconClass || iconClass;
         }
 
+        console.log(options);
+
         if (showDuplicates(options.showDuplicates, obj)) {
           return;
         }
@@ -120,7 +122,7 @@
               }
 
               hidefunnyCupcake();
-            });
+            }).addClass(options.closeButton);
           }
         };
 
@@ -266,8 +268,6 @@
 })(
 /* eslint-disable no-undef, strict, global-require */
 typeof define === 'function' && define.amd ? define : function (deps, factory) {
-  console.log(factory);
-
   if (typeof module !== 'undefined' && module.exports) {
     // Node
     module.exports = factory(require('jquery'));
@@ -275,4 +275,8 @@ typeof define === 'function' && define.amd ? define : function (deps, factory) {
     window.funnyCupcake = factory(window.jQuery);
   }
 }); // call
-// funnyCupcake.info('test')
+
+
+funnyCupcake.info('test', '', {
+  timeOut: 2000000000
+});
