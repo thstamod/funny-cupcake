@@ -124,7 +124,7 @@
           }
         };
 
-        var displayToast = function displayToast() {
+        var displayfunnyCupcake = function displayfunnyCupcake() {
           $funnyCupcakeElement.hide();
           $funnyCupcakeElement[options.showAnimation.method]({
             duration: options.showAnimation.duration,
@@ -191,9 +191,6 @@
         };
 
         var hidefunnyCupcake = function hidefunnyCupcake() {
-          // if ($(':focus', $funnyCupcakeElement).length) {
-          //     return;
-          // }
           console.log($funnyCupcakeElement);
           return $funnyCupcakeElement[options.hideAnimation.method]({
             duration: options.hideAnimation.duration,
@@ -211,7 +208,7 @@
         };
 
         addUserDisplayOptions();
-        displayToast();
+        displayfunnyCupcake();
         bindEvents();
         return $funnyCupcakeElement;
       }; // end prepare
