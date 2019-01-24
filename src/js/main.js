@@ -36,7 +36,7 @@
           warning: 'funnyCupcake-warning'
         },
         positionClass: 'funnyCupcake-top-right',
-        timeOut: 7000, // 0 --> sticky
+        timeOut: 20000, // 0 --> sticky
         titleClass: 'funnyCupcake-title',
         messageClass: 'funnyCupcake-message',
         htmlTags: false,
@@ -121,7 +121,7 @@
           }
         }
 
-        const displayToast = () => {
+        const displayfunnyCupcake = () => {
           $funnyCupcakeElement.hide()
           $funnyCupcakeElement[options.showAnimation.method]({
             duration: options.showAnimation.duration,
@@ -190,9 +190,6 @@
         }
 
         const hidefunnyCupcake = () => {
-          // if ($(':focus', $funnyCupcakeElement).length) {
-          //     return;
-          // }
           console.log($funnyCupcakeElement)
           return $funnyCupcakeElement[options.hideAnimation.method]({
             duration: options.hideAnimation.duration,
@@ -210,7 +207,7 @@
 
         addUserDisplayOptions()
 
-        displayToast()
+        displayfunnyCupcake()
 
         bindEvents()
 
@@ -256,7 +253,8 @@
       const funnyCupcake = {
         getContainer,
         info,
-        options: {}
+        options: {},
+        removefunnyCupcake
       }
 
       return funnyCupcake
@@ -276,4 +274,4 @@
     }
 ))
 // call
-funnyCupcake.info('test')
+// funnyCupcake.info('test')

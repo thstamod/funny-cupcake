@@ -37,7 +37,7 @@
           warning: 'funnyCupcake-warning'
         },
         positionClass: 'funnyCupcake-top-right',
-        timeOut: 7000,
+        timeOut: 20000,
         // 0 --> sticky
         titleClass: 'funnyCupcake-title',
         messageClass: 'funnyCupcake-message',
@@ -124,7 +124,7 @@
           }
         };
 
-        var displayToast = function displayToast() {
+        var displayfunnyCupcake = function displayfunnyCupcake() {
           $funnyCupcakeElement.hide();
           $funnyCupcakeElement[options.showAnimation.method]({
             duration: options.showAnimation.duration,
@@ -191,9 +191,6 @@
         };
 
         var hidefunnyCupcake = function hidefunnyCupcake() {
-          // if ($(':focus', $funnyCupcakeElement).length) {
-          //     return;
-          // }
           console.log($funnyCupcakeElement);
           return $funnyCupcakeElement[options.hideAnimation.method]({
             duration: options.hideAnimation.duration,
@@ -211,7 +208,7 @@
         };
 
         addUserDisplayOptions();
-        displayToast();
+        displayfunnyCupcake();
         bindEvents();
         return $funnyCupcakeElement;
       }; // end prepare
@@ -260,7 +257,8 @@
       var funnyCupcake = {
         getContainer: getContainer,
         info: info,
-        options: {}
+        options: {},
+        removefunnyCupcake: removefunnyCupcake
       };
       return funnyCupcake;
     }();
@@ -277,6 +275,4 @@ typeof define === 'function' && define.amd ? define : function (deps, factory) {
     window.funnyCupcake = factory(window.jQuery);
   }
 }); // call
-
-
-funnyCupcake.info('test');
+// funnyCupcake.info('test')
