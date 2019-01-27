@@ -47,7 +47,7 @@
         showDuplicates: false
       }
 
-      const info = (message, title, userOptions) =>
+      const info = (title, message, userOptions) =>
         preparefunnyCupcake({
           type: funnyCupcakeType.info,
           iconClass: defaultOptions.iconClasses.info,
@@ -144,6 +144,7 @@
             }
           },
           title: () => {
+            console.log('title')
             if (obj.title) {
               let _text = obj.title
               if (options.htmlTags) {
@@ -154,6 +155,7 @@
             }
           },
           message: () => {
+            console.log('msg')
             if (obj.message) {
               let _text = obj.message
               if (options.htmlTags) {
@@ -275,6 +277,10 @@
     }
 ))
 // call
-funnyCupcake.info('test', '', {
-  timeOut: 2000000000
-})
+funnyCupcake.info(
+  'test',
+  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)

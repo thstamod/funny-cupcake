@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./icons/css/fontello.css";
 
 #funnyCupcake-container {
   position: absolute;
@@ -21,9 +22,9 @@
 
   .funnyCupcake {
     position: relative;
-    display: flex;
     min-width: 200px;
     min-height: 60px;
+    padding: 10px;
     &.funnyCupcake-info {
       background-color: $bg-info;
     }
@@ -40,6 +41,20 @@
       position: absolute;
       top: 0;
       right: 0;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      &:focus {
+        outline: transparent;
+      }
+    }
+    .funnyCupcake-title {
+      display: inline-block;
+      margin-bottom: 5px;
+      font-size: 1.3em;
+    }
+    &::before {
+      margin-left: 0;
     }
   }
 }

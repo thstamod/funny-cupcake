@@ -49,7 +49,7 @@
         showDuplicates: false
       };
 
-      var info = function info(message, title, userOptions) {
+      var info = function info(title, message, userOptions) {
         return preparefunnyCupcake({
           type: funnyCupcakeType.info,
           iconClass: defaultOptions.iconClasses.info,
@@ -146,6 +146,8 @@
             }
           },
           title: function title() {
+            console.log('title');
+
             if (obj.title) {
               var _text = obj.title;
 
@@ -158,6 +160,8 @@
             }
           },
           message: function message() {
+            console.log('msg');
+
             if (obj.message) {
               var _text = obj.message;
 
@@ -277,6 +281,6 @@ typeof define === 'function' && define.amd ? define : function (deps, factory) {
 }); // call
 
 
-funnyCupcake.info('test', '', {
-  timeOut: 2000000000
+funnyCupcake.info('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
 });

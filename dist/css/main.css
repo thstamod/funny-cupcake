@@ -1,3 +1,4 @@
+@import url(./icons/css/fontello.css);
 #funnyCupcake-container {
   position: absolute;
 }
@@ -24,10 +25,9 @@
 
 #funnyCupcake-container .funnyCupcake {
   position: relative;
-  display: -ms-flexbox;
-  display: flex;
   min-width: 200px;
   min-height: 60px;
+  padding: 10px;
 }
 
 #funnyCupcake-container .funnyCupcake.funnyCupcake-info {
@@ -50,6 +50,23 @@
   position: absolute;
   top: 0;
   right: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+#funnyCupcake-container .funnyCupcake .funnyCupcake-close-button:focus {
+  outline: transparent;
+}
+
+#funnyCupcake-container .funnyCupcake .funnyCupcake-title {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 1.3em;
+}
+
+#funnyCupcake-container .funnyCupcake::before {
+  margin-left: 0;
 }
 
 /*# sourceMappingURL=main.css.map */
