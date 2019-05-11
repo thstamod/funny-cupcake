@@ -47,10 +47,34 @@
         showDuplicates: false
       }
 
-      const info = (message, title, userOptions) =>
+      const info = (title, message, userOptions) =>
         preparefunnyCupcake({
           type: funnyCupcakeType.info,
           iconClass: defaultOptions.iconClasses.info,
+          message,
+          userOptions,
+          title
+        })
+      const success = (title, message, userOptions) =>
+        preparefunnyCupcake({
+          type: funnyCupcakeType.success,
+          iconClass: defaultOptions.iconClasses.success,
+          message,
+          userOptions,
+          title
+        })
+      const warning = (title, message, userOptions) =>
+        preparefunnyCupcake({
+          type: funnyCupcakeType.warning,
+          iconClass: defaultOptions.iconClasses.warning,
+          message,
+          userOptions,
+          title
+        })
+      const error = (title, message, userOptions) =>
+        preparefunnyCupcake({
+          type: funnyCupcakeType.error,
+          iconClass: defaultOptions.iconClasses.error,
           message,
           userOptions,
           title
@@ -80,7 +104,7 @@
           options = $.extend(options, obj.userOptions)
           iconClass = obj.userOptions.iconClass || iconClass
         }
-
+        console.log(options)
         if (showDuplicates(options.showDuplicates, obj)) {
           return
         }
@@ -107,17 +131,19 @@
           }
 
           if (options.closeButton && $closeElement) {
-            $closeElement.click((event) => {
-              if (event.stopPropagation) {
-                event.stopPropagation()
-              } else if (
-                event.cancelBubble !== undefined &&
-                event.cancelBubble !== true
-              ) {
-                event.cancelBubble = true
-              }
-              hidefunnyCupcake()
-            })
+            $closeElement
+              .click((event) => {
+                if (event.stopPropagation) {
+                  event.stopPropagation()
+                } else if (
+                  event.cancelBubble !== undefined &&
+                  event.cancelBubble !== true
+                ) {
+                  event.cancelBubble = true
+                }
+                hidefunnyCupcake()
+              })
+              .addClass(options.closeButton)
           }
         }
 
@@ -142,6 +168,7 @@
             }
           },
           title: () => {
+            console.log('title')
             if (obj.title) {
               let _text = obj.title
               if (options.htmlTags) {
@@ -152,6 +179,7 @@
             }
           },
           message: () => {
+            console.log('msg')
             if (obj.message) {
               let _text = obj.message
               if (options.htmlTags) {
@@ -253,6 +281,9 @@
       const funnyCupcake = {
         getContainer,
         info,
+        success,
+        warning,
+        error,
         options: {},
         removefunnyCupcake
       }
@@ -264,7 +295,6 @@
   typeof define === 'function' && define.amd
     ? define
     : (deps, factory) => {
-      console.log(factory)
       if (typeof module !== 'undefined' && module.exports) {
         // Node
         module.exports = factory(require('jquery'))
@@ -274,4 +304,31 @@
     }
 ))
 // call
-// funnyCupcake.info('test')
+funnyCupcake.info(
+  'test',
+  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)
+funnyCupcake.success(
+  'test',
+  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)
+funnyCupcake.warning(
+  'test',
+  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)
+funnyCupcake.error(
+  'test',
+  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)

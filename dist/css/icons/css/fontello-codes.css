@@ -1,0 +1,5 @@
+
+.funnyCupcake-info:before { content: '\e800'; } /* '' */
+.funnyCupcake-warning-empty:before { content: '\e801'; } /* '' */
+.funnyCupcake-minus-circled:before { content: '\e802'; } /* '' */
+.funnyCupcake-ok-circle:before { content: '\e803'; } /* '' */

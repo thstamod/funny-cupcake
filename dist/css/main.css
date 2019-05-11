@@ -1,3 +1,74 @@
+@import url(./icons/css/fontello.css);
+#funnyCupcake-container {
+  position: absolute;
+}
+
+#funnyCupcake-container.funnyCupcake-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+#funnyCupcake-container.funnyCupcake-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+#funnyCupcake-container.funnyCupcake-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+#funnyCupcake-container.funnyCupcake-bottom-right {
+  right: 20px;
+  bottom: 20px;
+}
+
+#funnyCupcake-container .funnyCupcake {
+  position: relative;
+  min-width: 200px;
+  min-height: 60px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#funnyCupcake-container .funnyCupcake.funnyCupcake-info {
+  background-color: #5bc0de;
+}
+
+#funnyCupcake-container .funnyCupcake.funnyCupcake-error {
+  background-color: #f03;
+}
+
+#funnyCupcake-container .funnyCupcake.funnyCupcake-success {
+  background-color: #2b3;
+}
+
+#funnyCupcake-container .funnyCupcake.funnyCupcake-warning {
+  background-color: #f3d43e;
+}
+
+#funnyCupcake-container .funnyCupcake .funnyCupcake-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+#funnyCupcake-container .funnyCupcake .funnyCupcake-close-button:focus {
+  outline: transparent;
+}
+
+#funnyCupcake-container .funnyCupcake .funnyCupcake-title {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 1.3em;
+}
+
+#funnyCupcake-container .funnyCupcake::before {
+  margin-left: 0;
+}
 
 /*# sourceMappingURL=main.css.map */
 

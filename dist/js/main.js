@@ -49,10 +49,40 @@
         showDuplicates: false
       };
 
-      var info = function info(message, title, userOptions) {
+      var info = function info(title, message, userOptions) {
         return preparefunnyCupcake({
           type: funnyCupcakeType.info,
           iconClass: defaultOptions.iconClasses.info,
+          message: message,
+          userOptions: userOptions,
+          title: title
+        });
+      };
+
+      var success = function success(title, message, userOptions) {
+        return preparefunnyCupcake({
+          type: funnyCupcakeType.success,
+          iconClass: defaultOptions.iconClasses.success,
+          message: message,
+          userOptions: userOptions,
+          title: title
+        });
+      };
+
+      var warning = function warning(title, message, userOptions) {
+        return preparefunnyCupcake({
+          type: funnyCupcakeType.warning,
+          iconClass: defaultOptions.iconClasses.warning,
+          message: message,
+          userOptions: userOptions,
+          title: title
+        });
+      };
+
+      var error = function error(title, message, userOptions) {
+        return preparefunnyCupcake({
+          type: funnyCupcakeType.error,
+          iconClass: defaultOptions.iconClasses.error,
           message: message,
           userOptions: userOptions,
           title: title
@@ -87,6 +117,8 @@
           iconClass = obj.userOptions.iconClass || iconClass;
         }
 
+        console.log(options);
+
         if (showDuplicates(options.showDuplicates, obj)) {
           return;
         }
@@ -120,7 +152,7 @@
               }
 
               hidefunnyCupcake();
-            });
+            }).addClass(options.closeButton);
           }
         };
 
@@ -144,6 +176,8 @@
             }
           },
           title: function title() {
+            console.log('title');
+
             if (obj.title) {
               var _text = obj.title;
 
@@ -156,6 +190,8 @@
             }
           },
           message: function message() {
+            console.log('msg');
+
             if (obj.message) {
               var _text = obj.message;
 
@@ -257,6 +293,9 @@
       var funnyCupcake = {
         getContainer: getContainer,
         info: info,
+        success: success,
+        warning: warning,
+        error: error,
         options: {},
         removefunnyCupcake: removefunnyCupcake
       };
@@ -266,8 +305,6 @@
 })(
 /* eslint-disable no-undef, strict, global-require */
 typeof define === 'function' && define.amd ? define : function (deps, factory) {
-  console.log(factory);
-
   if (typeof module !== 'undefined' && module.exports) {
     // Node
     module.exports = factory(require('jquery'));
@@ -275,4 +312,17 @@ typeof define === 'function' && define.amd ? define : function (deps, factory) {
     window.funnyCupcake = factory(window.jQuery);
   }
 }); // call
-// funnyCupcake.info('test')
+
+
+funnyCupcake.info('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
+});
+funnyCupcake.success('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
+});
+funnyCupcake.warning('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
+});
+funnyCupcake.error('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
+});
