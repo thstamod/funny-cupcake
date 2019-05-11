@@ -59,6 +59,36 @@
         });
       };
 
+      var success = function success(title, message, userOptions) {
+        return preparefunnyCupcake({
+          type: funnyCupcakeType.success,
+          iconClass: defaultOptions.iconClasses.success,
+          message: message,
+          userOptions: userOptions,
+          title: title
+        });
+      };
+
+      var warning = function warning(title, message, userOptions) {
+        return preparefunnyCupcake({
+          type: funnyCupcakeType.warning,
+          iconClass: defaultOptions.iconClasses.warning,
+          message: message,
+          userOptions: userOptions,
+          title: title
+        });
+      };
+
+      var error = function error(title, message, userOptions) {
+        return preparefunnyCupcake({
+          type: funnyCupcakeType.error,
+          iconClass: defaultOptions.iconClasses.error,
+          message: message,
+          userOptions: userOptions,
+          title: title
+        });
+      };
+
       var removefunnyCupcake = function removefunnyCupcake($funnyCupcakeElement) {
         if (!$container) {
           $container = getContainer();
@@ -263,6 +293,9 @@
       var funnyCupcake = {
         getContainer: getContainer,
         info: info,
+        success: success,
+        warning: warning,
+        error: error,
         options: {},
         removefunnyCupcake: removefunnyCupcake
       };
@@ -282,5 +315,14 @@ typeof define === 'function' && define.amd ? define : function (deps, factory) {
 
 
 funnyCupcake.info('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
+});
+funnyCupcake.success('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
+});
+funnyCupcake.warning('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
+});
+funnyCupcake.error('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
   timeOut: 0
 });

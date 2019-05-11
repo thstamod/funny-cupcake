@@ -55,6 +55,30 @@
           userOptions,
           title
         })
+      const success = (title, message, userOptions) =>
+        preparefunnyCupcake({
+          type: funnyCupcakeType.success,
+          iconClass: defaultOptions.iconClasses.success,
+          message,
+          userOptions,
+          title
+        })
+      const warning = (title, message, userOptions) =>
+        preparefunnyCupcake({
+          type: funnyCupcakeType.warning,
+          iconClass: defaultOptions.iconClasses.warning,
+          message,
+          userOptions,
+          title
+        })
+      const error = (title, message, userOptions) =>
+        preparefunnyCupcake({
+          type: funnyCupcakeType.error,
+          iconClass: defaultOptions.iconClasses.error,
+          message,
+          userOptions,
+          title
+        })
 
       const removefunnyCupcake = ($funnyCupcakeElement) => {
         if (!$container) {
@@ -257,6 +281,9 @@
       const funnyCupcake = {
         getContainer,
         info,
+        success,
+        warning,
+        error,
         options: {},
         removefunnyCupcake
       }
@@ -278,6 +305,27 @@
 ))
 // call
 funnyCupcake.info(
+  'test',
+  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)
+funnyCupcake.success(
+  'test',
+  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)
+funnyCupcake.warning(
+  'test',
+  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)
+funnyCupcake.error(
   'test',
   'this is a test funnyCupcake! and <br> <strong>test</strong>',
   {

@@ -25,6 +25,7 @@
     min-width: 200px;
     min-height: 60px;
     padding: 10px;
+    margin-bottom: 10px;
     &.funnyCupcake-info {
       background-color: $bg-info;
     }
@@ -50,7 +51,7 @@
     }
     .funnyCupcake-title {
       display: inline-block;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
       font-size: 1.3em;
     }
     &::before {

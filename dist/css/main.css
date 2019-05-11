@@ -28,6 +28,7 @@
   min-width: 200px;
   min-height: 60px;
   padding: 10px;
+  margin-bottom: 10px;
 }
 
 #funnyCupcake-container .funnyCupcake.funnyCupcake-info {
@@ -43,7 +44,7 @@
 }
 
 #funnyCupcake-container .funnyCupcake.funnyCupcake-warning {
-  background-color: #f0ad4e;
+  background-color: #f3d43e;
 }
 
 #funnyCupcake-container .funnyCupcake .funnyCupcake-close-button {
@@ -61,7 +62,7 @@
 
 #funnyCupcake-container .funnyCupcake .funnyCupcake-title {
   display: inline-block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-size: 1.3em;
 }
 
