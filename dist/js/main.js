@@ -128,9 +128,9 @@ var funnyCupcake = function () {
 
     $container = getContainer(options, true);
     var intervalId = null;
-    var $funnyCupcakeElement = $('<div/>');
-    var $titleElement = $('<div/>');
-    var $messageElement = $('<div/>');
+    var $funnyCupcakeElement = document.createElement('div');
+    var $titleElement = document.createElement('div');
+    var $messageElement = document.createElement('div');
     var $closeElement = $(options.closeHtml);
 
     var addUserDisplayOptions = function addUserDisplayOptions() {
@@ -138,8 +138,8 @@ var funnyCupcake = function () {
       // debugger
       userDisplayOptions.icons();
       userDisplayOptions.title();
-      userDisplayOptions.message();
-      userDisplayOptions.closeButton();
+      userDisplayOptions.message(); // userDisplayOptions.closeButton()
+
       userDisplayOptions.newestOnTop();
     };
 
@@ -177,7 +177,7 @@ var funnyCupcake = function () {
     var userDisplayOptions = {
       icons: function icons() {
         if (obj.iconClass) {
-          $funnyCupcakeElement.addClass(options.identifierClass).addClass(iconClass);
+          $funnyCupcakeElement.classList.add(options.identifierClass, iconClass);
         }
       },
       title: function title() {
@@ -190,7 +190,8 @@ var funnyCupcake = function () {
             _text = htmlescape(obj.title);
           }
 
-          $titleElement.append(_text).addClass(options.titleClass);
+          $titleElement.append(_text);
+          $titleElement.classList.add(options.titleClass);
           $funnyCupcakeElement.append($titleElement);
         }
       },
@@ -204,7 +205,8 @@ var funnyCupcake = function () {
             _text = htmlescape(obj.message);
           }
 
-          $messageElement.append(_text).addClass(options.messageClass);
+          $messageElement.append(_text);
+          $messageElement.classList.add(options.messageClass);
           $funnyCupcakeElement.append($messageElement);
         }
       },
@@ -216,14 +218,16 @@ var funnyCupcake = function () {
       },
       newestOnTop: function newestOnTop() {
         if (options.newestOnTop) {
-          document.querySelector("#".concat($container.id)).insertBefore($funnyCupcakeElement[0], $container.firstChild);
+          document.querySelector("#".concat($container.id)).insertBefore($funnyCupcakeElement, $container.firstChild);
         } else {
-          document.querySelector("#".concat($container.id)).appendChild($funnyCupcakeElement[0]);
+          document.querySelector("#".concat($container.id)).appendChild($funnyCupcakeElement);
         }
       }
     };
 
     var htmlescape = function htmlescape(source) {
+      console.log(source);
+
       if (source === null) {
         source = '';
       }

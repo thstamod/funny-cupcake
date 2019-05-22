@@ -115,9 +115,9 @@ const funnyCupcake = (() => {
     $container = getContainer(options, true)
 
     let intervalId = null
-    const $funnyCupcakeElement = $('<div/>')
-    const $titleElement = $('<div/>')
-    const $messageElement = $('<div/>')
+    const $funnyCupcakeElement = document.createElement('div')
+    const $titleElement = document.createElement('div')
+    const $messageElement = document.createElement('div')
     const $closeElement = $(options.closeHtml)
 
     const addUserDisplayOptions = () => {
@@ -126,7 +126,7 @@ const funnyCupcake = (() => {
       userDisplayOptions.icons()
       userDisplayOptions.title()
       userDisplayOptions.message()
-      userDisplayOptions.closeButton()
+      // userDisplayOptions.closeButton()
       userDisplayOptions.newestOnTop()
     }
 
@@ -167,9 +167,7 @@ const funnyCupcake = (() => {
     const userDisplayOptions = {
       icons: () => {
         if (obj.iconClass) {
-          $funnyCupcakeElement
-            .addClass(options.identifierClass)
-            .addClass(iconClass)
+          $funnyCupcakeElement.classList.add(options.identifierClass, iconClass)
         }
       },
       title: () => {
@@ -179,7 +177,8 @@ const funnyCupcake = (() => {
           if (options.htmlTags) {
             _text = htmlescape(obj.title)
           }
-          $titleElement.append(_text).addClass(options.titleClass)
+          $titleElement.append(_text)
+          $titleElement.classList.add(options.titleClass)
           $funnyCupcakeElement.append($titleElement)
         }
       },
@@ -190,7 +189,8 @@ const funnyCupcake = (() => {
           if (options.htmlTags) {
             _text = htmlescape(obj.message)
           }
-          $messageElement.append(_text).addClass(options.messageClass)
+          $messageElement.append(_text)
+          $messageElement.classList.add(options.messageClass)
           $funnyCupcakeElement.append($messageElement)
         }
       },
@@ -204,16 +204,17 @@ const funnyCupcake = (() => {
         if (options.newestOnTop) {
           document
             .querySelector(`#${$container.id}`)
-            .insertBefore($funnyCupcakeElement[0], $container.firstChild)
+            .insertBefore($funnyCupcakeElement, $container.firstChild)
         } else {
           document
             .querySelector(`#${$container.id}`)
-            .appendChild($funnyCupcakeElement[0])
+            .appendChild($funnyCupcakeElement)
         }
       }
     }
 
     const htmlescape = (source) => {
+      console.log(source)
       if (source === null) {
         source = ''
       }
