@@ -40,7 +40,7 @@ const funnyCupcake = (() => {
     timeOut: 20000, // 0 --> sticky
     titleClass: 'funnyCupcake-title',
     messageClass: 'funnyCupcake-message',
-    htmlTags: false,
+    htmlTags: true,
     target: 'body',
     closeHtml: '<button type="button">&times;</button>',
     closeButton: 'funnyCupcake-close-button',
@@ -85,21 +85,20 @@ const funnyCupcake = (() => {
     if (!$container) {
       $container = getContainer()
     }
-    if ($funnyCupcakeElement.is(':visible')) {
+    if ($funnyCupcakeElement.offsetParent === null) {
       return
     }
-    $funnyCupcakeElement.remove()
+    $funnyCupcakeElement.parentNode.removeChild($funnyCupcakeElement)
     $funnyCupcakeElement = null
-    if ($container.children().length === 0) {
-      $container.remove()
-      previous = undefined
-    }
+    // TODO
+    // if ($container.children().length === 0) {
+    //   $container.remove()
+    //   previous = undefined
+    // }
   }
 
   // eslint-disable-next-line no-var
   const preparefunnyCupcake = (obj) => {
-    // eslint-disable-next-line no-debugger
-    // debugger
     let options = getOptions()
     let iconClass = obj.iconClass || options.iconClass
 
@@ -107,7 +106,6 @@ const funnyCupcake = (() => {
       options = extend(options, obj.userOptions)
       iconClass = obj.userOptions.iconClass || iconClass
     }
-    console.log(options)
     if (showDuplicates(options.showDuplicates, obj)) {
       return
     }
@@ -121,8 +119,6 @@ const funnyCupcake = (() => {
     const $closeElement = $(options.closeHtml)
 
     const addUserDisplayOptions = () => {
-      // eslint-disable-next-line no-debugger
-      // debugger
       userDisplayOptions.icons()
       userDisplayOptions.title()
       userDisplayOptions.message()
@@ -153,12 +149,12 @@ const funnyCupcake = (() => {
     }
 
     const displayfunnyCupcake = () => {
-      $funnyCupcakeElement.hide()
-      $funnyCupcakeElement[options.showAnimation.method]({
-        duration: options.showAnimation.duration,
-        easing: options.showAnimation.easing,
-        complete: options.showAnimation.onComplete
-      })
+      $funnyCupcakeElement.style.display = 'block'
+      // $funnyCupcakeElement[options.showAnimation.method]({
+      //   duration: options.showAnimation.duration,
+      //   easing: options.showAnimation.easing,
+      //   complete: options.showAnimation.onComplete
+      // })
       if (options.timeOut > 0) {
         intervalId = setTimeout(hidefunnyCupcake, options.timeOut)
       }
@@ -171,7 +167,7 @@ const funnyCupcake = (() => {
         }
       },
       title: () => {
-        console.log('title')
+        // console.log('title')
         if (obj.title) {
           let _text = obj.title
           if (options.htmlTags) {
@@ -183,13 +179,13 @@ const funnyCupcake = (() => {
         }
       },
       message: () => {
-        console.log('msg')
+        // console.log('msg')
         if (obj.message) {
           let _text = obj.message
-          if (options.htmlTags) {
+          if (!options.htmlTags) {
             _text = htmlescape(obj.message)
           }
-          $messageElement.append(_text)
+          $messageElement.innerHTML = _text.trim()
           $messageElement.classList.add(options.messageClass)
           $funnyCupcakeElement.append($messageElement)
         }
@@ -219,36 +215,32 @@ const funnyCupcake = (() => {
         source = ''
       }
 
-      return source
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
+      return source.replace(/(<([^>]+)>)/gi, '')
     }
 
     const hidefunnyCupcake = () => {
-      console.log($funnyCupcakeElement)
-      return $funnyCupcakeElement[options.hideAnimation.method]({
-        duration: options.hideAnimation.duration,
-        easing: options.hideAnimation.easing,
-        complete() {
-          console.log('onComplete')
-          removefunnyCupcake($funnyCupcakeElement)
-          clearTimeout(intervalId)
-          if (options.hideAnimation.onComplete) {
-            options.onHidden()
-          }
-        }
-      })
+      // $funnyCupcakeElement.style.display = 'none'
+      // console.log($funnyCupcakeElement)
+      // $funnyCupcakeElement[options.hideAnimation.method]({
+      //   duration: options.hideAnimation.duration,
+      //   easing: options.hideAnimation.easing,
+      //   complete() {
+      console.log('onComplete')
+      removefunnyCupcake($funnyCupcakeElement)
+      clearTimeout(intervalId)
+      if (options.hideAnimation.onComplete) {
+        options.onHidden()
+      }
     }
+    // }
+    // })
 
     addUserDisplayOptions()
 
     displayfunnyCupcake()
 
     bindEvents()
-    console.log($funnyCupcakeElement)
+    // console.log($funnyCupcakeElement)
     return $funnyCupcakeElement
   } // end prepare
 
@@ -273,7 +265,7 @@ const funnyCupcake = (() => {
       options = getOptions()
     }
     $container = document.querySelector(`#${options.containerId}`)
-    console.log($container)
+    // console.log($container)
     if ($container) {
       return $container
     }
@@ -318,12 +310,12 @@ funnyCupcake.info(
   'test',
   'this is a test funnyCupcake! and <br> <strong>test</strong>',
   {
-    timeOut: 0
+    timeOut: 3000
   }
 )
 funnyCupcake.success(
   'test',
-  'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>',
   {
     timeOut: 0
   }
