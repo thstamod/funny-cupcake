@@ -32,6 +32,12 @@ var funnyCupcake = function () {
       onComplete: undefined
     },
     iconClasses: {
+      error: 'funnyCupcake-minus-circled',
+      info: 'funnyCupcake-info',
+      success: 'funnyCupcake-ok-circle',
+      warning: 'funnyCupcake-warning-empty'
+    },
+    _iconClasses: {
       error: 'funnyCupcake-error',
       info: 'funnyCupcake-info',
       success: 'funnyCupcake-success',
@@ -171,7 +177,7 @@ var funnyCupcake = function () {
     var userDisplayOptions = {
       icons: function icons() {
         if (obj.iconClass) {
-          $funnyCupcakeElement.classList.add(options.identifierClass, iconClass);
+          $funnyCupcakeElement.classList.add(options.identifierClass, iconClass, "funnyCupcake-".concat(obj.type));
         }
       },
       title: function title() {
@@ -328,7 +334,7 @@ var funnyCupcake = function () {
 
 
 funnyCupcake.info('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
-  timeOut: 3000
+  timeOut: 0
 });
 funnyCupcake.success('test', '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>', {
   timeOut: 0

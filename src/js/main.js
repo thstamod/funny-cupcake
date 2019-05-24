@@ -31,6 +31,12 @@ const funnyCupcake = (() => {
       onComplete: undefined
     },
     iconClasses: {
+      error: 'funnyCupcake-minus-circled',
+      info: 'funnyCupcake-info',
+      success: 'funnyCupcake-ok-circle',
+      warning: 'funnyCupcake-warning-empty'
+    },
+    _iconClasses: {
       error: 'funnyCupcake-error',
       info: 'funnyCupcake-info',
       success: 'funnyCupcake-success',
@@ -162,7 +168,11 @@ const funnyCupcake = (() => {
     const userDisplayOptions = {
       icons: () => {
         if (obj.iconClass) {
-          $funnyCupcakeElement.classList.add(options.identifierClass, iconClass)
+          $funnyCupcakeElement.classList.add(
+            options.identifierClass,
+            iconClass,
+            `funnyCupcake-${obj.type}`
+          )
         }
       },
       title: () => {
@@ -313,7 +323,7 @@ funnyCupcake.info(
   'test',
   'this is a test funnyCupcake! and <br> <strong>test</strong>',
   {
-    timeOut: 3000
+    timeOut: 0
   }
 )
 funnyCupcake.success(
