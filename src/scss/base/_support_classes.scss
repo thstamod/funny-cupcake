@@ -1,0 +1,8 @@
+.d_none {
+  @include animation(all 1s ease);
+  display: none;
+}
+
+.d_block {
+  display: block;
+}

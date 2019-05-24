@@ -1,4 +1,14 @@
 @import url(./icons/css/fontello.css);
+.d_none {
+  -webkit-animation: all 1s ease;
+  animation: all 1s ease;
+  display: none;
+}
+
+.d_block {
+  display: block;
+}
+
 #funnyCupcake-container {
   position: absolute;
 }
