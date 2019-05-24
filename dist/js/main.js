@@ -7,7 +7,8 @@
 /* eslint-disable no-undefined */
 var funnyCupcake = function () {
   // 'use strict'
-  var $container;
+  var _container;
+
   var funnyCupcakeType = {
     error: 'error',
     info: 'info',
@@ -96,20 +97,22 @@ var funnyCupcake = function () {
     });
   };
 
-  var removefunnyCupcake = function removefunnyCupcake($funnyCupcakeElement) {
-    if (!$container) {
-      $container = getContainer();
+  var removefunnyCupcake = function removefunnyCupcake(_funnyCupcakeElement) {
+    if (!_container) {
+      _container = getContainer();
     }
 
-    if ($funnyCupcakeElement.offsetParent === null) {
+    if (_funnyCupcakeElement.offsetParent === null) {
       return;
     }
 
-    $funnyCupcakeElement.parentNode.removeChild($funnyCupcakeElement);
-    $funnyCupcakeElement = null; // TODO
+    _funnyCupcakeElement.parentNode.removeChild(_funnyCupcakeElement);
 
-    if ($container.childElementCount === 0) {
-      $container.parentNode.removeChild($container);
+    _funnyCupcakeElement = null; // TODO
+
+    if (_container.childElementCount === 0) {
+      _container.parentNode.removeChild(_container);
+
       previous = undefined;
     }
   }; // eslint-disable-next-line no-var
@@ -128,12 +131,16 @@ var funnyCupcake = function () {
       return;
     }
 
-    $container = getContainer(options, true);
+    _container = getContainer(options, true);
     var intervalId = null;
-    var $funnyCupcakeElement = document.createElement('div');
-    var $titleElement = document.createElement('div');
-    var $messageElement = document.createElement('div');
-    var $closeElement = document.createElement('button');
+
+    var _funnyCupcakeElement = document.createElement('div');
+
+    var _titleElement = document.createElement('div');
+
+    var _messageElement = document.createElement('div');
+
+    var _closeElement = document.createElement('button');
 
     var addUserDisplayOptions = function addUserDisplayOptions() {
       userDisplayOptions.type();
@@ -146,11 +153,11 @@ var funnyCupcake = function () {
 
     var bindEvents = function bindEvents() {
       if (options.tapToDismiss) {
-        $funnyCupcakeElement.addEventListener('click', hidefunnyCupcake);
+        _funnyCupcakeElement.addEventListener('click', hidefunnyCupcake);
       }
 
-      if (options.closeButton && $closeElement) {
-        $closeElement.addEventListener('click', function (event) {
+      if (options.closeButton && _closeElement) {
+        _closeElement.addEventListener('click', function (event) {
           if (event.stopPropagation) {
             event.stopPropagation();
           } else if (event.cancelBubble !== undefined && event.cancelBubble !== true) {
@@ -159,12 +166,13 @@ var funnyCupcake = function () {
 
           hidefunnyCupcake();
         });
-        $closeElement.classList.add(options.closeButton);
+
+        _closeElement.classList.add(options.closeButton);
       }
     };
 
     var displayfunnyCupcake = function displayfunnyCupcake() {
-      $funnyCupcakeElement.style.display = 'block'; // animation
+      _funnyCupcakeElement.style.display = 'block'; // animation
 
       if (options.timeOut > 0) {
         intervalId = setTimeout(hidefunnyCupcake, options.timeOut);
@@ -173,11 +181,11 @@ var funnyCupcake = function () {
 
     var userDisplayOptions = {
       type: function type() {
-        $funnyCupcakeElement.classList.add(options.identifierClass, "funnyCupcake-".concat(obj.type));
+        _funnyCupcakeElement.classList.add(options.identifierClass, "funnyCupcake-".concat(obj.type));
       },
       icons: function icons() {
         if (obj.iconClass) {
-          $funnyCupcakeElement.classList.add(iconClass);
+          _funnyCupcakeElement.classList.add(iconClass);
         }
       },
       title: function title() {
@@ -189,9 +197,11 @@ var funnyCupcake = function () {
             _text = htmlescape(obj.title);
           }
 
-          $titleElement.append(_text);
-          $titleElement.classList.add(options.titleClass);
-          $funnyCupcakeElement.append($titleElement);
+          _titleElement.append(_text);
+
+          _titleElement.classList.add(options.titleClass);
+
+          _funnyCupcakeElement.append(_titleElement);
         }
       },
       message: function message() {
@@ -203,25 +213,31 @@ var funnyCupcake = function () {
             _text = htmlescape(obj.message);
           }
 
-          $messageElement.innerHTML = _text.trim();
-          $messageElement.classList.add(options.messageClass);
-          $funnyCupcakeElement.append($messageElement);
+          _messageElement.innerHTML = _text.trim();
+
+          _messageElement.classList.add(options.messageClass);
+
+          _funnyCupcakeElement.append(_messageElement);
         }
       },
       closeButton: function closeButton() {
         if (options.closeButton) {
-          $closeElement.setAttribute('type', 'button');
-          $closeElement.classList.add(options.closeClass);
-          $closeElement.setAttribute('role', 'button');
-          $closeElement.innerHTML = options.closeHtml;
-          $funnyCupcakeElement.insertBefore($closeElement, $funnyCupcakeElement.firstChild);
+          _closeElement.setAttribute('type', 'button');
+
+          _closeElement.classList.add(options.closeClass);
+
+          _closeElement.setAttribute('role', 'button');
+
+          _closeElement.innerHTML = options.closeHtml;
+
+          _funnyCupcakeElement.insertBefore(_closeElement, _funnyCupcakeElement.firstChild);
         }
       },
       newestOnTop: function newestOnTop() {
         if (options.newestOnTop) {
-          document.querySelector("#".concat($container.id)).insertBefore($funnyCupcakeElement, $container.firstChild);
+          document.querySelector("#".concat(_container.id)).insertBefore(_funnyCupcakeElement, _container.firstChild);
         } else {
-          document.querySelector("#".concat($container.id)).appendChild($funnyCupcakeElement);
+          document.querySelector("#".concat(_container.id)).appendChild(_funnyCupcakeElement);
         }
       }
     };
@@ -238,7 +254,7 @@ var funnyCupcake = function () {
 
     var hidefunnyCupcake = function hidefunnyCupcake() {
       // animation
-      removefunnyCupcake($funnyCupcakeElement);
+      removefunnyCupcake(_funnyCupcakeElement);
       clearTimeout(intervalId);
 
       if (options.hideAnimation.onComplete) {
@@ -249,7 +265,7 @@ var funnyCupcake = function () {
     addUserDisplayOptions();
     displayfunnyCupcake();
     bindEvents();
-    return $funnyCupcakeElement;
+    return _funnyCupcakeElement;
   }; // end prepare
 
 
@@ -279,25 +295,28 @@ var funnyCupcake = function () {
       options = getOptions();
     }
 
-    $container = document.querySelector("#".concat(options.containerId));
+    _container = document.querySelector("#".concat(options.containerId));
 
-    if ($container) {
-      return $container;
+    if (_container) {
+      return _container;
     }
 
     if (create) {
-      $container = createContainer(options);
+      _container = createContainer(options);
     }
 
-    return $container;
+    return _container;
   };
 
   var createContainer = function createContainer(options) {
-    $container = document.createElement('div');
-    $container.setAttribute('id', options.containerId);
-    $container.classList.add(options.positionClass);
-    document.querySelector(options.target).appendChild($container);
-    return $container;
+    _container = document.createElement('div');
+
+    _container.setAttribute('id', options.containerId);
+
+    _container.classList.add(options.positionClass);
+
+    document.querySelector(options.target).appendChild(_container);
+    return _container;
   };
 
   var showDuplicates = function showDuplicates(duplicate, obj) {

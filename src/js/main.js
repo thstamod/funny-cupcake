@@ -5,7 +5,7 @@
 const funnyCupcake = (() => {
   // 'use strict'
 
-  let $container
+  let _container
   const funnyCupcakeType = {
     error: 'error',
     info: 'info',
@@ -87,18 +87,18 @@ const funnyCupcake = (() => {
       title
     })
 
-  const removefunnyCupcake = ($funnyCupcakeElement) => {
-    if (!$container) {
-      $container = getContainer()
+  const removefunnyCupcake = (_funnyCupcakeElement) => {
+    if (!_container) {
+      _container = getContainer()
     }
-    if ($funnyCupcakeElement.offsetParent === null) {
+    if (_funnyCupcakeElement.offsetParent === null) {
       return
     }
-    $funnyCupcakeElement.parentNode.removeChild($funnyCupcakeElement)
-    $funnyCupcakeElement = null
+    _funnyCupcakeElement.parentNode.removeChild(_funnyCupcakeElement)
+    _funnyCupcakeElement = null
     // TODO
-    if ($container.childElementCount === 0) {
-      $container.parentNode.removeChild($container)
+    if (_container.childElementCount === 0) {
+      _container.parentNode.removeChild(_container)
       previous = undefined
     }
   }
@@ -116,13 +116,13 @@ const funnyCupcake = (() => {
       return
     }
 
-    $container = getContainer(options, true)
+    _container = getContainer(options, true)
 
     let intervalId = null
-    const $funnyCupcakeElement = document.createElement('div')
-    const $titleElement = document.createElement('div')
-    const $messageElement = document.createElement('div')
-    const $closeElement = document.createElement('button')
+    const _funnyCupcakeElement = document.createElement('div')
+    const _titleElement = document.createElement('div')
+    const _messageElement = document.createElement('div')
+    const _closeElement = document.createElement('button')
 
     const addUserDisplayOptions = () => {
       userDisplayOptions.type()
@@ -135,11 +135,11 @@ const funnyCupcake = (() => {
 
     const bindEvents = () => {
       if (options.tapToDismiss) {
-        $funnyCupcakeElement.addEventListener('click', hidefunnyCupcake)
+        _funnyCupcakeElement.addEventListener('click', hidefunnyCupcake)
       }
 
-      if (options.closeButton && $closeElement) {
-        $closeElement.addEventListener('click', (event) => {
+      if (options.closeButton && _closeElement) {
+        _closeElement.addEventListener('click', (event) => {
           if (event.stopPropagation) {
             event.stopPropagation()
           } else if (
@@ -150,12 +150,12 @@ const funnyCupcake = (() => {
           }
           hidefunnyCupcake()
         })
-        $closeElement.classList.add(options.closeButton)
+        _closeElement.classList.add(options.closeButton)
       }
     }
 
     const displayfunnyCupcake = () => {
-      $funnyCupcakeElement.style.display = 'block'
+      _funnyCupcakeElement.style.display = 'block'
       // animation
       if (options.timeOut > 0) {
         intervalId = setTimeout(hidefunnyCupcake, options.timeOut)
@@ -164,14 +164,14 @@ const funnyCupcake = (() => {
 
     const userDisplayOptions = {
       type: () => {
-        $funnyCupcakeElement.classList.add(
+        _funnyCupcakeElement.classList.add(
           options.identifierClass,
           `funnyCupcake-${obj.type}`
         )
       },
       icons: () => {
         if (obj.iconClass) {
-          $funnyCupcakeElement.classList.add(iconClass)
+          _funnyCupcakeElement.classList.add(iconClass)
         }
       },
       title: () => {
@@ -181,9 +181,9 @@ const funnyCupcake = (() => {
           if (options.htmlTags) {
             _text = htmlescape(obj.title)
           }
-          $titleElement.append(_text)
-          $titleElement.classList.add(options.titleClass)
-          $funnyCupcakeElement.append($titleElement)
+          _titleElement.append(_text)
+          _titleElement.classList.add(options.titleClass)
+          _funnyCupcakeElement.append(_titleElement)
         }
       },
       message: () => {
@@ -193,32 +193,32 @@ const funnyCupcake = (() => {
           if (!options.htmlTags) {
             _text = htmlescape(obj.message)
           }
-          $messageElement.innerHTML = _text.trim()
-          $messageElement.classList.add(options.messageClass)
-          $funnyCupcakeElement.append($messageElement)
+          _messageElement.innerHTML = _text.trim()
+          _messageElement.classList.add(options.messageClass)
+          _funnyCupcakeElement.append(_messageElement)
         }
       },
       closeButton: () => {
         if (options.closeButton) {
-          $closeElement.setAttribute('type', 'button')
-          $closeElement.classList.add(options.closeClass)
-          $closeElement.setAttribute('role', 'button')
-          $closeElement.innerHTML = options.closeHtml
-          $funnyCupcakeElement.insertBefore(
-            $closeElement,
-            $funnyCupcakeElement.firstChild
+          _closeElement.setAttribute('type', 'button')
+          _closeElement.classList.add(options.closeClass)
+          _closeElement.setAttribute('role', 'button')
+          _closeElement.innerHTML = options.closeHtml
+          _funnyCupcakeElement.insertBefore(
+            _closeElement,
+            _funnyCupcakeElement.firstChild
           )
         }
       },
       newestOnTop: () => {
         if (options.newestOnTop) {
           document
-            .querySelector(`#${$container.id}`)
-            .insertBefore($funnyCupcakeElement, $container.firstChild)
+            .querySelector(`#${_container.id}`)
+            .insertBefore(_funnyCupcakeElement, _container.firstChild)
         } else {
           document
-            .querySelector(`#${$container.id}`)
-            .appendChild($funnyCupcakeElement)
+            .querySelector(`#${_container.id}`)
+            .appendChild(_funnyCupcakeElement)
         }
       }
     }
@@ -234,7 +234,7 @@ const funnyCupcake = (() => {
 
     const hidefunnyCupcake = () => {
       // animation
-      removefunnyCupcake($funnyCupcakeElement)
+      removefunnyCupcake(_funnyCupcakeElement)
       clearTimeout(intervalId)
       if (options.hideAnimation.onComplete) {
         options.onHidden()
@@ -245,7 +245,7 @@ const funnyCupcake = (() => {
     displayfunnyCupcake()
     bindEvents()
 
-    return $funnyCupcakeElement
+    return _funnyCupcakeElement
   } // end prepare
 
   function getOptions() {
@@ -268,22 +268,22 @@ const funnyCupcake = (() => {
     if (!options) {
       options = getOptions()
     }
-    $container = document.querySelector(`#${options.containerId}`)
-    if ($container) {
-      return $container
+    _container = document.querySelector(`#${options.containerId}`)
+    if (_container) {
+      return _container
     }
     if (create) {
-      $container = createContainer(options)
+      _container = createContainer(options)
     }
-    return $container
+    return _container
   }
 
   const createContainer = (options) => {
-    $container = document.createElement('div')
-    $container.setAttribute('id', options.containerId)
-    $container.classList.add(options.positionClass)
-    document.querySelector(options.target).appendChild($container)
-    return $container
+    _container = document.createElement('div')
+    _container.setAttribute('id', options.containerId)
+    _container.classList.add(options.positionClass)
+    document.querySelector(options.target).appendChild(_container)
+    return _container
   }
 
   const showDuplicates = (duplicate, obj) => {
