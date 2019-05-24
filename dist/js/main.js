@@ -44,7 +44,7 @@ var funnyCupcake = function () {
     messageClass: 'funnyCupcake-message',
     htmlTags: true,
     target: 'body',
-    closeHtml: '<button type="button">&times;</button>',
+    closeHtml: '&times;',
     closeButton: 'funnyCupcake-close-button',
     newestOnTop: true,
     showDuplicates: false
@@ -101,10 +101,11 @@ var funnyCupcake = function () {
 
     $funnyCupcakeElement.parentNode.removeChild($funnyCupcakeElement);
     $funnyCupcakeElement = null; // TODO
-    // if ($container.children().length === 0) {
-    //   $container.remove()
-    //   previous = undefined
-    // }
+
+    if ($container.childElementCount === 0) {
+      $container.parentNode.removeChild($container);
+      previous = undefined;
+    }
   }; // eslint-disable-next-line no-var
 
 
@@ -126,23 +127,23 @@ var funnyCupcake = function () {
     var $funnyCupcakeElement = document.createElement('div');
     var $titleElement = document.createElement('div');
     var $messageElement = document.createElement('div');
-    var $closeElement = $(options.closeHtml);
+    var $closeElement = document.createElement('button');
 
     var addUserDisplayOptions = function addUserDisplayOptions() {
       userDisplayOptions.icons();
       userDisplayOptions.title();
-      userDisplayOptions.message(); // userDisplayOptions.closeButton()
-
+      userDisplayOptions.message();
+      userDisplayOptions.closeButton();
       userDisplayOptions.newestOnTop();
     };
 
     var bindEvents = function bindEvents() {
       if (options.tapToDismiss) {
-        $funnyCupcakeElement.click(hidefunnyCupcake);
+        $funnyCupcakeElement.addEventListener('click', hidefunnyCupcake);
       }
 
       if (options.closeButton && $closeElement) {
-        $closeElement.click(function (event) {
+        $closeElement.addEventListener('click', function (event) {
           if (event.stopPropagation) {
             event.stopPropagation();
           } else if (event.cancelBubble !== undefined && event.cancelBubble !== true) {
@@ -150,7 +151,8 @@ var funnyCupcake = function () {
           }
 
           hidefunnyCupcake();
-        }).addClass(options.closeButton);
+        });
+        $closeElement.classList.add(options.closeButton);
       }
     };
 
@@ -202,8 +204,11 @@ var funnyCupcake = function () {
       },
       closeButton: function closeButton() {
         if (options.closeButton) {
-          $closeElement.addClass(options.closeClass).attr('role', 'button');
-          $funnyCupcakeElement.prepend($closeElement);
+          $closeElement.setAttribute('type', 'button');
+          $closeElement.classList.add(options.closeClass);
+          $closeElement.setAttribute('role', 'button');
+          $closeElement.innerHTML = options.closeHtml;
+          $funnyCupcakeElement.insertBefore($closeElement, $funnyCupcakeElement.firstChild);
         }
       },
       newestOnTop: function newestOnTop() {
@@ -245,8 +250,7 @@ var funnyCupcake = function () {
 
     addUserDisplayOptions();
     displayfunnyCupcake();
-    bindEvents(); // console.log($funnyCupcakeElement)
-
+    bindEvents();
     return $funnyCupcakeElement;
   }; // end prepare
 

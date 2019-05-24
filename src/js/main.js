@@ -42,7 +42,7 @@ const funnyCupcake = (() => {
     messageClass: 'funnyCupcake-message',
     htmlTags: true,
     target: 'body',
-    closeHtml: '<button type="button">&times;</button>',
+    closeHtml: '&times;',
     closeButton: 'funnyCupcake-close-button',
     newestOnTop: true,
     showDuplicates: false
@@ -91,10 +91,10 @@ const funnyCupcake = (() => {
     $funnyCupcakeElement.parentNode.removeChild($funnyCupcakeElement)
     $funnyCupcakeElement = null
     // TODO
-    // if ($container.children().length === 0) {
-    //   $container.remove()
-    //   previous = undefined
-    // }
+    if ($container.childElementCount === 0) {
+      $container.parentNode.removeChild($container)
+      previous = undefined
+    }
   }
 
   // eslint-disable-next-line no-var
@@ -116,35 +116,34 @@ const funnyCupcake = (() => {
     const $funnyCupcakeElement = document.createElement('div')
     const $titleElement = document.createElement('div')
     const $messageElement = document.createElement('div')
-    const $closeElement = $(options.closeHtml)
+    const $closeElement = document.createElement('button')
 
     const addUserDisplayOptions = () => {
       userDisplayOptions.icons()
       userDisplayOptions.title()
       userDisplayOptions.message()
-      // userDisplayOptions.closeButton()
+      userDisplayOptions.closeButton()
       userDisplayOptions.newestOnTop()
     }
 
     const bindEvents = () => {
       if (options.tapToDismiss) {
-        $funnyCupcakeElement.click(hidefunnyCupcake)
+        $funnyCupcakeElement.addEventListener('click', hidefunnyCupcake)
       }
 
       if (options.closeButton && $closeElement) {
-        $closeElement
-          .click((event) => {
-            if (event.stopPropagation) {
-              event.stopPropagation()
-            } else if (
-              event.cancelBubble !== undefined &&
-              event.cancelBubble !== true
-            ) {
-              event.cancelBubble = true
-            }
-            hidefunnyCupcake()
-          })
-          .addClass(options.closeButton)
+        $closeElement.addEventListener('click', (event) => {
+          if (event.stopPropagation) {
+            event.stopPropagation()
+          } else if (
+            event.cancelBubble !== undefined &&
+            event.cancelBubble !== true
+          ) {
+            event.cancelBubble = true
+          }
+          hidefunnyCupcake()
+        })
+        $closeElement.classList.add(options.closeButton)
       }
     }
 
@@ -192,8 +191,14 @@ const funnyCupcake = (() => {
       },
       closeButton: () => {
         if (options.closeButton) {
-          $closeElement.addClass(options.closeClass).attr('role', 'button')
-          $funnyCupcakeElement.prepend($closeElement)
+          $closeElement.setAttribute('type', 'button')
+          $closeElement.classList.add(options.closeClass)
+          $closeElement.setAttribute('role', 'button')
+          $closeElement.innerHTML = options.closeHtml
+          $funnyCupcakeElement.insertBefore(
+            $closeElement,
+            $funnyCupcakeElement.firstChild
+          )
         }
       },
       newestOnTop: () => {
@@ -236,11 +241,9 @@ const funnyCupcake = (() => {
     // })
 
     addUserDisplayOptions()
-
     displayfunnyCupcake()
-
     bindEvents()
-    // console.log($funnyCupcakeElement)
+
     return $funnyCupcakeElement
   } // end prepare
 
