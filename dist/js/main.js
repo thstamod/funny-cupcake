@@ -53,7 +53,7 @@ var funnyCupcake = function () {
     closeHtml: '&times;',
     closeButton: 'funnyCupcake-close-button',
     newestOnTop: true,
-    showDuplicates: false
+    showDuplicates: true
   };
 
   var info = function info(title, message, userOptions) {
@@ -136,6 +136,7 @@ var funnyCupcake = function () {
     var $closeElement = document.createElement('button');
 
     var addUserDisplayOptions = function addUserDisplayOptions() {
+      userDisplayOptions.type();
       userDisplayOptions.icons();
       userDisplayOptions.title();
       userDisplayOptions.message();
@@ -163,11 +164,7 @@ var funnyCupcake = function () {
     };
 
     var displayfunnyCupcake = function displayfunnyCupcake() {
-      $funnyCupcakeElement.style.display = 'block'; // $funnyCupcakeElement[options.showAnimation.method]({
-      //   duration: options.showAnimation.duration,
-      //   easing: options.showAnimation.easing,
-      //   complete: options.showAnimation.onComplete
-      // })
+      $funnyCupcakeElement.style.display = 'block'; // animation
 
       if (options.timeOut > 0) {
         intervalId = setTimeout(hidefunnyCupcake, options.timeOut);
@@ -175,9 +172,12 @@ var funnyCupcake = function () {
     };
 
     var userDisplayOptions = {
+      type: function type() {
+        $funnyCupcakeElement.classList.add(options.identifierClass, "funnyCupcake-".concat(obj.type));
+      },
       icons: function icons() {
         if (obj.iconClass) {
-          $funnyCupcakeElement.classList.add(options.identifierClass, iconClass, "funnyCupcake-".concat(obj.type));
+          $funnyCupcakeElement.classList.add(iconClass);
         }
       },
       title: function title() {
@@ -237,22 +237,14 @@ var funnyCupcake = function () {
     };
 
     var hidefunnyCupcake = function hidefunnyCupcake() {
-      // $funnyCupcakeElement.style.display = 'none'
-      // console.log($funnyCupcakeElement)
-      // $funnyCupcakeElement[options.hideAnimation.method]({
-      //   duration: options.hideAnimation.duration,
-      //   easing: options.hideAnimation.easing,
-      //   complete() {
-      console.log('onComplete');
+      // animation
       removefunnyCupcake($funnyCupcakeElement);
       clearTimeout(intervalId);
 
       if (options.hideAnimation.onComplete) {
         options.onHidden();
       }
-    }; // }
-    // })
-
+    };
 
     addUserDisplayOptions();
     displayfunnyCupcake();
@@ -287,7 +279,7 @@ var funnyCupcake = function () {
       options = getOptions();
     }
 
-    $container = document.querySelector("#".concat(options.containerId)); // console.log($container)
+    $container = document.querySelector("#".concat(options.containerId));
 
     if ($container) {
       return $container;
@@ -309,12 +301,19 @@ var funnyCupcake = function () {
   };
 
   var showDuplicates = function showDuplicates(duplicate, obj) {
-    if (duplicate) {
-      if (obj.message === previous) {
+    // eslint-disable-next-line no-debugger
+    // debugger
+    if (!duplicate) {
+      if (!previous) {
+        previous = obj;
+        return false;
+      }
+
+      if (obj.message === previous.message && obj.type === previous.type) {
         return true;
       }
 
-      previous = obj.message;
+      previous = obj;
     }
 
     return false;
@@ -334,6 +333,9 @@ var funnyCupcake = function () {
 
 
 funnyCupcake.info('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
+  timeOut: 0
+});
+funnyCupcake.success('test', '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>', {
   timeOut: 0
 });
 funnyCupcake.success('test', '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>', {

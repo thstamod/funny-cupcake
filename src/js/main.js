@@ -51,7 +51,7 @@ const funnyCupcake = (() => {
     closeHtml: '&times;',
     closeButton: 'funnyCupcake-close-button',
     newestOnTop: true,
-    showDuplicates: false
+    showDuplicates: true
   }
 
   const info = (title, message, userOptions) =>
@@ -125,6 +125,7 @@ const funnyCupcake = (() => {
     const $closeElement = document.createElement('button')
 
     const addUserDisplayOptions = () => {
+      userDisplayOptions.type()
       userDisplayOptions.icons()
       userDisplayOptions.title()
       userDisplayOptions.message()
@@ -155,24 +156,22 @@ const funnyCupcake = (() => {
 
     const displayfunnyCupcake = () => {
       $funnyCupcakeElement.style.display = 'block'
-      // $funnyCupcakeElement[options.showAnimation.method]({
-      //   duration: options.showAnimation.duration,
-      //   easing: options.showAnimation.easing,
-      //   complete: options.showAnimation.onComplete
-      // })
+      // animation
       if (options.timeOut > 0) {
         intervalId = setTimeout(hidefunnyCupcake, options.timeOut)
       }
     }
 
     const userDisplayOptions = {
+      type: () => {
+        $funnyCupcakeElement.classList.add(
+          options.identifierClass,
+          `funnyCupcake-${obj.type}`
+        )
+      },
       icons: () => {
         if (obj.iconClass) {
-          $funnyCupcakeElement.classList.add(
-            options.identifierClass,
-            iconClass,
-            `funnyCupcake-${obj.type}`
-          )
+          $funnyCupcakeElement.classList.add(iconClass)
         }
       },
       title: () => {
@@ -234,21 +233,13 @@ const funnyCupcake = (() => {
     }
 
     const hidefunnyCupcake = () => {
-      // $funnyCupcakeElement.style.display = 'none'
-      // console.log($funnyCupcakeElement)
-      // $funnyCupcakeElement[options.hideAnimation.method]({
-      //   duration: options.hideAnimation.duration,
-      //   easing: options.hideAnimation.easing,
-      //   complete() {
-      console.log('onComplete')
+      // animation
       removefunnyCupcake($funnyCupcakeElement)
       clearTimeout(intervalId)
       if (options.hideAnimation.onComplete) {
         options.onHidden()
       }
     }
-    // }
-    // })
 
     addUserDisplayOptions()
     displayfunnyCupcake()
@@ -278,7 +269,6 @@ const funnyCupcake = (() => {
       options = getOptions()
     }
     $container = document.querySelector(`#${options.containerId}`)
-    // console.log($container)
     if ($container) {
       return $container
     }
@@ -297,11 +287,17 @@ const funnyCupcake = (() => {
   }
 
   const showDuplicates = (duplicate, obj) => {
-    if (duplicate) {
-      if (obj.message === previous) {
+    // eslint-disable-next-line no-debugger
+    // debugger
+    if (!duplicate) {
+      if (!previous) {
+        previous = obj
+        return false
+      }
+      if (obj.message === previous.message && obj.type === previous.type) {
         return true
       }
-      previous = obj.message
+      previous = obj
     }
     return false
   }
@@ -322,6 +318,13 @@ const funnyCupcake = (() => {
 funnyCupcake.info(
   'test',
   'this is a test funnyCupcake! and <br> <strong>test</strong>',
+  {
+    timeOut: 0
+  }
+)
+funnyCupcake.success(
+  'test',
+  '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>',
   {
     timeOut: 0
   }
