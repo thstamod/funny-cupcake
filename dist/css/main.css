@@ -1,12 +1,53 @@
+/*
+
+Colors
+
+*/
+/*
+
+Animation Time
+
+*/
 @import url(./icons/css/fontello.css);
-.d_none {
-  -webkit-animation: all 1s ease;
-  animation: all 1s ease;
-  display: none;
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.d_block {
-  display: block;
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.d_none {
+  opacity: 0 !important;
+  -webkit-animation: fadeOut 2s !important;
+  animation: fadeOut 2s !important;
 }
 
 #funnyCupcake-container {
@@ -35,10 +76,14 @@
 
 #funnyCupcake-container .funnyCupcake {
   position: relative;
+  display: block;
   min-width: 200px;
   min-height: 60px;
   padding: 10px;
   margin-bottom: 10px;
+  opacity: 1;
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s;
 }
 
 #funnyCupcake-container .funnyCupcake.funnyCupcake-info {

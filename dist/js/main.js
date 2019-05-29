@@ -20,18 +20,8 @@ var funnyCupcake = function () {
     onTapDismiss: false,
     identifierClass: 'funnyCupcake',
     containerId: 'funnyCupcake-container',
-    showAnimation: {
-      method: 'fadeIn',
-      duration: 300,
-      easing: 'swing',
-      onComplete: undefined
-    },
-    hideAnimation: {
-      method: 'fadeOut',
-      duration: 1000,
-      easing: 'swing',
-      onComplete: undefined
-    },
+    showAnimationCallback: undefined,
+    hideAnimationCallback: undefined,
     iconClasses: {
       error: 'funnyCupcake-minus-circled',
       info: 'funnyCupcake-info',
@@ -45,7 +35,7 @@ var funnyCupcake = function () {
       warning: 'funnyCupcake-warning'
     },
     positionClass: 'funnyCupcake-top-right',
-    timeOut: 20000,
+    timeOut: 2000,
     // 0 --> sticky
     titleClass: 'funnyCupcake-title',
     messageClass: 'funnyCupcake-message',
@@ -156,6 +146,23 @@ var funnyCupcake = function () {
         _funnyCupcakeElement.addEventListener('click', hidefunnyCupcake);
       }
 
+      _funnyCupcakeElement.addEventListener('animationend', function (e) {
+        if (e.animationName === 'fadeOut') {
+          removefunnyCupcake(_funnyCupcakeElement);
+          clearTimeout(intervalId);
+
+          if (options.hideAnimationCallback) {
+            options.hideAnimationCallback();
+          }
+        }
+
+        if (e.animationName === 'fadeIn') {
+          if (options.showAnimationCallback) {
+            options.showAnimationCallback();
+          }
+        }
+      });
+
       if (options.closeButton && _closeElement) {
         _closeElement.addEventListener('click', function (event) {
           if (event.stopPropagation) {
@@ -171,9 +178,7 @@ var funnyCupcake = function () {
       }
     };
 
-    var displayfunnyCupcake = function displayfunnyCupcake() {
-      _funnyCupcakeElement.style.display = 'block'; // animation
-
+    var setRelease = function setRelease() {
       if (options.timeOut > 0) {
         intervalId = setTimeout(hidefunnyCupcake, options.timeOut);
       }
@@ -189,7 +194,6 @@ var funnyCupcake = function () {
         }
       },
       title: function title() {
-        // console.log('title')
         if (obj.title) {
           var _text = obj.title;
 
@@ -205,7 +209,6 @@ var funnyCupcake = function () {
         }
       },
       message: function message() {
-        // console.log('msg')
         if (obj.message) {
           var _text = obj.message;
 
@@ -243,8 +246,6 @@ var funnyCupcake = function () {
     };
 
     var htmlescape = function htmlescape(source) {
-      console.log(source);
-
       if (source === null) {
         source = '';
       }
@@ -253,18 +254,12 @@ var funnyCupcake = function () {
     };
 
     var hidefunnyCupcake = function hidefunnyCupcake() {
-      // animation
-      removefunnyCupcake(_funnyCupcakeElement);
-      clearTimeout(intervalId);
-
-      if (options.hideAnimation.onComplete) {
-        options.onHidden();
-      }
+      _funnyCupcakeElement.classList.add('d_none');
     };
 
     addUserDisplayOptions();
-    displayfunnyCupcake();
     bindEvents();
+    setRelease();
     return _funnyCupcakeElement;
   }; // end prepare
 
@@ -351,25 +346,20 @@ var funnyCupcake = function () {
 }(); // call
 
 
-funnyCupcake.info('test', 'this is a test funnyCupcake! and <br> <strong>test</strong>', {
-  timeOut: 0
-});
-funnyCupcake.success('test', '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>', {
-  timeOut: 0
-});
-funnyCupcake.success('test', '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>', {
-  timeOut: 0
-}); // funnyCupcake.warning(
-//   'test',
-//   'this is a test funnyCupcake! and <br> <strong>test</strong>',
-//   {
-//     timeOut: 0
-//   }
-// )
-// funnyCupcake.error(
-//   'test',
-//   'this is a test funnyCupcake! and <br> <strong>test</strong>',
-//   {
-//     timeOut: 0
-//   }
-// )
+window.onload = function () {
+  funnyCupcake.info('test', 'this is a test funnyCupcake! and <br> <strong>test1</strong>', {
+    timeOut: 5000,
+    hideAnimationCallback: function hideAnimationCallback() {
+      console.log('test1');
+    }
+  });
+  funnyCupcake.success('test', '<div>this is a test funnyCupcake! and <br> <strong>test2</strong></div>', {
+    timeOut: 3000,
+    showAnimationCallback: function showAnimationCallback() {
+      console.log('test2');
+    }
+  });
+  funnyCupcake.success('test', '<div>this is a test funnyCupcake! and <br> <strong>test3</strong></div>', {
+    timeOut: 0
+  });
+};

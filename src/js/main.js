@@ -18,18 +18,8 @@ const funnyCupcake = (() => {
     onTapDismiss: false,
     identifierClass: 'funnyCupcake',
     containerId: 'funnyCupcake-container',
-    showAnimation: {
-      method: 'fadeIn',
-      duration: 300,
-      easing: 'swing',
-      onComplete: undefined
-    },
-    hideAnimation: {
-      method: 'fadeOut',
-      duration: 1000,
-      easing: 'swing',
-      onComplete: undefined
-    },
+    showAnimationCallback: undefined,
+    hideAnimationCallback: undefined,
     iconClasses: {
       error: 'funnyCupcake-minus-circled',
       info: 'funnyCupcake-info',
@@ -43,7 +33,7 @@ const funnyCupcake = (() => {
       warning: 'funnyCupcake-warning'
     },
     positionClass: 'funnyCupcake-top-right',
-    timeOut: 20000, // 0 --> sticky
+    timeOut: 2000, // 0 --> sticky
     titleClass: 'funnyCupcake-title',
     messageClass: 'funnyCupcake-message',
     htmlTags: true,
@@ -138,6 +128,21 @@ const funnyCupcake = (() => {
         _funnyCupcakeElement.addEventListener('click', hidefunnyCupcake)
       }
 
+      _funnyCupcakeElement.addEventListener('animationend', (e) => {
+        if (e.animationName === 'fadeOut') {
+          removefunnyCupcake(_funnyCupcakeElement)
+          clearTimeout(intervalId)
+          if (options.hideAnimationCallback) {
+            options.hideAnimationCallback()
+          }
+        }
+        if (e.animationName === 'fadeIn') {
+          if (options.showAnimationCallback) {
+            options.showAnimationCallback()
+          }
+        }
+      })
+
       if (options.closeButton && _closeElement) {
         _closeElement.addEventListener('click', (event) => {
           if (event.stopPropagation) {
@@ -154,9 +159,7 @@ const funnyCupcake = (() => {
       }
     }
 
-    const displayfunnyCupcake = () => {
-      _funnyCupcakeElement.style.display = 'block'
-      // animation
+    const setRelease = () => {
       if (options.timeOut > 0) {
         intervalId = setTimeout(hidefunnyCupcake, options.timeOut)
       }
@@ -175,7 +178,6 @@ const funnyCupcake = (() => {
         }
       },
       title: () => {
-        // console.log('title')
         if (obj.title) {
           let _text = obj.title
           if (options.htmlTags) {
@@ -187,7 +189,6 @@ const funnyCupcake = (() => {
         }
       },
       message: () => {
-        // console.log('msg')
         if (obj.message) {
           let _text = obj.message
           if (!options.htmlTags) {
@@ -224,7 +225,6 @@ const funnyCupcake = (() => {
     }
 
     const htmlescape = (source) => {
-      console.log(source)
       if (source === null) {
         source = ''
       }
@@ -233,17 +233,12 @@ const funnyCupcake = (() => {
     }
 
     const hidefunnyCupcake = () => {
-      // animation
-      removefunnyCupcake(_funnyCupcakeElement)
-      clearTimeout(intervalId)
-      if (options.hideAnimation.onComplete) {
-        options.onHidden()
-      }
+      _funnyCupcakeElement.classList.add('d_none')
     }
 
     addUserDisplayOptions()
-    displayfunnyCupcake()
     bindEvents()
+    setRelease()
 
     return _funnyCupcakeElement
   } // end prepare
@@ -315,38 +310,33 @@ const funnyCupcake = (() => {
 })()
 
 // call
-funnyCupcake.info(
-  'test',
-  'this is a test funnyCupcake! and <br> <strong>test</strong>',
-  {
-    timeOut: 0
-  }
-)
-funnyCupcake.success(
-  'test',
-  '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>',
-  {
-    timeOut: 0
-  }
-)
-funnyCupcake.success(
-  'test',
-  '<div>this is a test funnyCupcake! and <br> <strong>test</strong></div>',
-  {
-    timeOut: 0
-  }
-)
-// funnyCupcake.warning(
-//   'test',
-//   'this is a test funnyCupcake! and <br> <strong>test</strong>',
-//   {
-//     timeOut: 0
-//   }
-// )
-// funnyCupcake.error(
-//   'test',
-//   'this is a test funnyCupcake! and <br> <strong>test</strong>',
-//   {
-//     timeOut: 0
-//   }
-// )
+
+window.onload = function () {
+  funnyCupcake.info(
+    'test',
+    'this is a test funnyCupcake! and <br> <strong>test1</strong>',
+    {
+      timeOut: 5000,
+      hideAnimationCallback() {
+        console.log('test1')
+      }
+    }
+  )
+  funnyCupcake.success(
+    'test',
+    '<div>this is a test funnyCupcake! and <br> <strong>test2</strong></div>',
+    {
+      timeOut: 3000,
+      showAnimationCallback() {
+        console.log('test2')
+      }
+    }
+  )
+  funnyCupcake.success(
+    'test',
+    '<div>this is a test funnyCupcake! and <br> <strong>test3</strong></div>',
+    {
+      timeOut: 0
+    }
+  )
+}

@@ -19,10 +19,14 @@
 
   .funnyCupcake {
     position: relative;
+    display: block;
     min-width: 200px;
     min-height: 60px;
     padding: 10px;
     margin-bottom: 10px;
+    opacity: 1;
+    animation: fadeIn #{$fadeIn_time}s;
+
     &.funnyCupcake-info {
       background-color: $bg-info;
     }

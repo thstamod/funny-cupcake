@@ -1,8 +1,5 @@
+// stylelint-disable
 .d_none {
-  @include animation(all 1s ease);
-  display: none;
-}
-
-.d_block {
-  display: block;
+  opacity: 0 !important;
+  animation: fadeOut #{$fadeOut_time}s !important;
 }

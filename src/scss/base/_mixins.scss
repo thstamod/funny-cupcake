@@ -1,3 +1,4 @@
+// stylelint-disable property-blacklist
 @mixin animation($str) {
-  animation: $str;
+  transition: $str;
 }
