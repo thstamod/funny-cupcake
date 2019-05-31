@@ -52,9 +52,13 @@
     }
     .funnyCupcake-title {
       display: inline-block;
-      margin-bottom: 10px;
-      font-size: 1.3em;
+      margin-bottom: 5px;
+      font-size: $fontSize_title;
     }
+    .funnyCupcake-message {
+      font-size: $fontSize_message;
+    }
+
     &::before {
       margin-left: 0;
     }

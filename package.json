@@ -6,9 +6,8 @@
   "scripts": {
     "test": "gulp test",
     "watch_source": "gulp watch-source",
-    "js_main_prepare_prod_no_lint": "gulp js_main_prepare_prod_no_lint",
-    "js_main_prepare_prod": "gulp js_main_prepare_prod",
-    "css_prepare_prod": "gulp css_prepare_prod",
+    "js_prepare": "gulp js_prepare",
+    "css_prepare": "gulp css_prepare",
     "start": "http-server ./dist"
   },
   "repository": {

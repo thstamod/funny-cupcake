@@ -162,8 +162,7 @@ gulp.task('test', (done) => {
 // dev
 exports.watch = gulp.series('watch-source')
 
-exports.js_theme_prod_no_lint = gulp.series('babel', 'js-minify')
-exports.js_theme_prod = gulp.series('eslint', 'babel', 'js-minify')
-exports.css_theme_prod_min = gulp.series('css-min')
+exports.js_prepare = gulp.series('eslint', 'babel', 'js-minify')
+exports.css_prepare = gulp.series('css-min')
 
 exports.test = gulp.series('test')

@@ -15,7 +15,7 @@ const funnyCupcake = (() => {
   let previous
 
   const defaultOptions = {
-    onTapDismiss: false,
+    closeOnTap: false,
     identifierClass: 'funnyCupcake',
     containerId: 'funnyCupcake-container',
     showAnimationCallback: undefined,
@@ -38,13 +38,14 @@ const funnyCupcake = (() => {
     messageClass: 'funnyCupcake-message',
     htmlTags: true,
     target: 'body',
+    hasCloseButton: true,
     closeHtml: '&times;',
     closeButton: 'funnyCupcake-close-button',
     newestOnTop: true,
     showDuplicates: true
   }
 
-  const info = (title, message, userOptions) =>
+  const info = (message, title, userOptions) =>
     preparefunnyCupcake({
       type: funnyCupcakeType.info,
       iconClass: defaultOptions.iconClasses.info,
@@ -52,7 +53,7 @@ const funnyCupcake = (() => {
       userOptions,
       title
     })
-  const success = (title, message, userOptions) =>
+  const success = (message, title, userOptions) =>
     preparefunnyCupcake({
       type: funnyCupcakeType.success,
       iconClass: defaultOptions.iconClasses.success,
@@ -60,7 +61,7 @@ const funnyCupcake = (() => {
       userOptions,
       title
     })
-  const warning = (title, message, userOptions) =>
+  const warning = (message, title, userOptions) =>
     preparefunnyCupcake({
       type: funnyCupcakeType.warning,
       iconClass: defaultOptions.iconClasses.warning,
@@ -68,7 +69,7 @@ const funnyCupcake = (() => {
       userOptions,
       title
     })
-  const error = (title, message, userOptions) =>
+  const error = (message, title, userOptions) =>
     preparefunnyCupcake({
       type: funnyCupcakeType.error,
       iconClass: defaultOptions.iconClasses.error,
@@ -119,12 +120,12 @@ const funnyCupcake = (() => {
       userDisplayOptions.icons()
       userDisplayOptions.title()
       userDisplayOptions.message()
-      userDisplayOptions.closeButton()
+      userDisplayOptions.setCloseButton()
       userDisplayOptions.newestOnTop()
     }
 
     const bindEvents = () => {
-      if (options.tapToDismiss) {
+      if (options.closeOnTap) {
         _funnyCupcakeElement.addEventListener('click', hidefunnyCupcake)
       }
 
@@ -143,7 +144,7 @@ const funnyCupcake = (() => {
         }
       })
 
-      if (options.closeButton && _closeElement) {
+      if (options.closeButton && _closeElement && options.hasCloseButton) {
         _closeElement.addEventListener('click', (event) => {
           if (event.stopPropagation) {
             event.stopPropagation()
@@ -155,7 +156,7 @@ const funnyCupcake = (() => {
           }
           hidefunnyCupcake()
         })
-        _closeElement.classList.add(options.closeButton)
+        // _closeElement.classList.add(options.closeButton)
       }
     }
 
@@ -173,7 +174,7 @@ const funnyCupcake = (() => {
         )
       },
       icons: () => {
-        if (obj.iconClass) {
+        if (obj.iconClass && obj.title) {
           _funnyCupcakeElement.classList.add(iconClass)
         }
       },
@@ -199,10 +200,10 @@ const funnyCupcake = (() => {
           _funnyCupcakeElement.append(_messageElement)
         }
       },
-      closeButton: () => {
-        if (options.closeButton) {
+      setCloseButton: () => {
+        if (options.hasCloseButton) {
           _closeElement.setAttribute('type', 'button')
-          _closeElement.classList.add(options.closeClass)
+          _closeElement.classList.add(options.closeButton)
           _closeElement.setAttribute('role', 'button')
           _closeElement.innerHTML = options.closeHtml
           _funnyCupcakeElement.insertBefore(
@@ -282,8 +283,6 @@ const funnyCupcake = (() => {
   }
 
   const showDuplicates = (duplicate, obj) => {
-    // eslint-disable-next-line no-debugger
-    // debugger
     if (!duplicate) {
       if (!previous) {
         previous = obj
@@ -313,18 +312,11 @@ const funnyCupcake = (() => {
 
 window.onload = function () {
   funnyCupcake.info(
-    'test',
-    'this is a test funnyCupcake! and <br> <strong>test1</strong>',
-    {
-      timeOut: 5000,
-      hideAnimationCallback() {
-        console.log('test1')
-      }
-    }
+    'this is a test funnyCupcake! and <br> <strong>test1</strong>'
   )
   funnyCupcake.success(
-    'test',
     '<div>this is a test funnyCupcake! and <br> <strong>test2</strong></div>',
+    'test',
     {
       timeOut: 3000,
       showAnimationCallback() {
@@ -333,8 +325,8 @@ window.onload = function () {
     }
   )
   funnyCupcake.success(
-    'test',
     '<div>this is a test funnyCupcake! and <br> <strong>test3</strong></div>',
+    'test',
     {
       timeOut: 0
     }

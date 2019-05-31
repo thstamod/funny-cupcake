@@ -8,6 +8,11 @@ Colors
 Animation Time
 
 */
+/*
+
+font-sizes
+
+*/
 @import url(./icons/css/fontello.css);
 @-webkit-keyframes fadeIn {
   0% {
@@ -117,8 +122,12 @@ Animation Time
 
 #funnyCupcake-container .funnyCupcake .funnyCupcake-title {
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 1.3em;
+}
+
+#funnyCupcake-container .funnyCupcake .funnyCupcake-message {
+  font-size: 1em;
 }
 
 #funnyCupcake-container .funnyCupcake::before {
