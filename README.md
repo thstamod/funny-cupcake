@@ -217,6 +217,6 @@ After that, all dependencies will be installed.
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+## Credits
 
 Inspired by [Toastr](https://github.com/CodeSeven/toastr/)
