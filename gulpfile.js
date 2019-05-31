@@ -75,7 +75,11 @@ gulp.task('stylelint', () =>
 
 gulp.task('css-min', () =>
   gulp
-    .src(['dist/css/**/*.css', '!dist/css/**/*.min.css'])
+    .src([
+      'dist/css/**/*.css',
+      '!dist/css/**/*.min.css',
+      '!dist/css/icons/**/*css'
+    ])
     .pipe(sourcemaps.init())
     .pipe(
       cleanCSS(
