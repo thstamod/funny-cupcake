@@ -8,7 +8,6 @@ module.exports = function (config) {
     basePath: './',
 
     files: [
-      'test/*.html',
       'src/js/*.js',
       {
         pattern: 'test/*.test.js',

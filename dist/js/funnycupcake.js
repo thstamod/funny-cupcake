@@ -5,6 +5,7 @@
 /* eslint-disable strict */
 
 /* eslint-disable no-undefined */
+// eslint-disable-next-line no-unused-vars
 var funnyCupcake = function () {
   // 'use strict'
   var _container;
@@ -285,6 +286,14 @@ var funnyCupcake = function () {
     return params[0];
   }
 
+  var removeAll = function removeAll() {
+    var _container = getContainer();
+
+    _container.querySelectorAll('.funnyCupcake').forEach(function (elem) {
+      elem.classList.add('d_none');
+    });
+  };
+
   var getContainer = function getContainer(options, create) {
     if (!options) {
       options = getOptions();
@@ -338,21 +347,30 @@ var funnyCupcake = function () {
     warning: warning,
     error: error,
     options: {},
-    removefunnyCupcake: removefunnyCupcake
+    removeAll: removeAll // removefunnyCupcake
+
   };
   return funnyCupcake;
 }(); // call
-
-
-window.onload = function () {
-  funnyCupcake.info('this is a test funnyCupcake! and <br> <strong>test1</strong>');
-  funnyCupcake.success('<div>this is a test funnyCupcake! and <br> <strong>test2</strong></div>', 'test', {
-    timeOut: 3000,
-    showAnimationCallback: function showAnimationCallback() {
-      console.log('test2');
-    }
-  });
-  funnyCupcake.success('<div>this is a test funnyCupcake! and <br> <strong>test3</strong></div>', 'test', {
-    timeOut: 0
-  });
-};
+// window.onload = function () {
+//   funnyCupcake.info(
+//     'this is a test funnyCupcake! and <br> <strong>test1</strong>'
+//   )
+//   funnyCupcake.success(
+//     '<div>this is a test funnyCupcake! and <br> <strong>test2</strong></div>',
+//     'test',
+//     {
+//       timeOut: 3000,
+//       showAnimationCallback() {
+//         console.log('test2')
+//       }
+//     }
+//   )
+//   funnyCupcake.success(
+//     '<div>this is a test funnyCupcake! and <br> <strong>test3</strong></div>',
+//     'test',
+//     {
+//       timeOut: 0
+//     }
+//   )
+// }
