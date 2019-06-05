@@ -1,6 +1,6 @@
 # funnyCupcake
 
-funnyCupcake is a JavaScript library for notifications with no external dependencies!!
+funnyCupcake is a JavaScript library for notifications with no dependencies!!
 
 ## Current version
 
