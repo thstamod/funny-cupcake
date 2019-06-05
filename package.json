@@ -1,7 +1,7 @@
 {
   "name": "funnyCupcake",
-  "version": "0.0.1",
-  "description": " funnyCupcake is a JavaScript library for notifications with no external dependencies!! ",
+  "version": "1.0.0",
+  "description": " funnyCupcake is a JavaScript library for notifications with no dependencies!! ",
   "main": "index.js",
   "scripts": {
     "test": "gulp test",

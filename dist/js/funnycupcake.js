@@ -1,13 +1,8 @@
 "use strict";
 
-/* eslint-disable no-undef */
-
-/* eslint-disable strict */
-
-/* eslint-disable no-undefined */
-// eslint-disable-next-line no-unused-vars
 var funnyCupcake = function () {
-  // 'use strict'
+  'use strict';
+
   var _container;
 
   var funnyCupcakeType = {
@@ -100,7 +95,7 @@ var funnyCupcake = function () {
 
     _funnyCupcakeElement.parentNode.removeChild(_funnyCupcakeElement);
 
-    _funnyCupcakeElement = null; // TODO
+    _funnyCupcakeElement = null;
 
     if (_container.childElementCount === 0) {
       _container.parentNode.removeChild(_container);
@@ -174,8 +169,7 @@ var funnyCupcake = function () {
           }
 
           hidefunnyCupcake();
-        }); // _closeElement.classList.add(options.closeButton)
-
+        });
       }
     };
 
@@ -347,30 +341,7 @@ var funnyCupcake = function () {
     warning: warning,
     error: error,
     options: {},
-    removeAll: removeAll // removefunnyCupcake
-
+    removeAll: removeAll
   };
   return funnyCupcake;
-}(); // call
-// window.onload = function () {
-//   funnyCupcake.info(
-//     'this is a test funnyCupcake! and <br> <strong>test1</strong>'
-//   )
-//   funnyCupcake.success(
-//     '<div>this is a test funnyCupcake! and <br> <strong>test2</strong></div>',
-//     'test',
-//     {
-//       timeOut: 3000,
-//       showAnimationCallback() {
-//         console.log('test2')
-//       }
-//     }
-//   )
-//   funnyCupcake.success(
-//     '<div>this is a test funnyCupcake! and <br> <strong>test3</strong></div>',
-//     'test',
-//     {
-//       timeOut: 0
-//     }
-//   )
-// }
+}();

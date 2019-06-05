@@ -57,9 +57,4 @@ typings/
 # dotenv environment variables file
 .env
 
-#custom
-__del
-
-__test\.js
-
-__test2\.js
+\.vscode/

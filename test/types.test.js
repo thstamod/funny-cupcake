@@ -2,6 +2,11 @@
 /* eslint-disable strict */
 /* eslint-disable no-undef */
 describe('funnyCupcake test types', () => {
+  afterAll(() => {
+    if (document.querySelector('#funnyCupcake-container')) {
+      document.querySelector('#funnyCupcake-container').remove()
+    }
+  })
   it('show info', () => {
     funnyCupcake.info('test', '', {
       timeOut: 0

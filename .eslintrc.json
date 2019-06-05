@@ -98,6 +98,7 @@
     "strict": "error",
 
     // Variables
+    "no-unused-vars": "off",
     "init-declarations": "off",
     "no-catch-shadow": "error",
     "no-label-var": "error",
@@ -105,9 +106,9 @@
     "no-shadow": "off",
     "no-shadow-restricted-names": "error",
     "no-undef-init": "error",
-    "no-undefined": "error",
+    "no-undefined": "off",
     "no-use-before-define": "off",
-    "no-console": "off",
+    "no-console": "error",
 
     // Node.js and CommonJS
     "callback-return": "off",

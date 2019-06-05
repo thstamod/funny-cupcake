@@ -169,4 +169,4 @@ exports.watch = gulp.series('watch-source')
 exports.js_prepare = gulp.series('eslint', 'babel', 'js-minify')
 exports.css_prepare = gulp.series('css-min')
 
-exports.test = gulp.series('test')
+exports.test = gulp.task('test')

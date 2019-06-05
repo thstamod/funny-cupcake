@@ -1,10 +1,5 @@
-/* eslint-disable no-undef */
-/* eslint-disable strict */
-/* eslint-disable no-undefined */
-
-// eslint-disable-next-line no-unused-vars
 const funnyCupcake = (() => {
-  // 'use strict'
+  'use strict'
 
   let _container
   const funnyCupcakeType = {
@@ -88,7 +83,6 @@ const funnyCupcake = (() => {
     }
     _funnyCupcakeElement.parentNode.removeChild(_funnyCupcakeElement)
     _funnyCupcakeElement = null
-    // TODO
     if (_container.childElementCount === 0) {
       _container.parentNode.removeChild(_container)
       previous = undefined
@@ -157,7 +151,6 @@ const funnyCupcake = (() => {
           }
           hidefunnyCupcake()
         })
-        // _closeElement.classList.add(options.closeButton)
       }
     }
 
@@ -311,33 +304,7 @@ const funnyCupcake = (() => {
     error,
     options: {},
     removeAll
-    // removefunnyCupcake
   }
 
   return funnyCupcake
 })()
-
-// call
-
-// window.onload = function () {
-//   funnyCupcake.info(
-//     'this is a test funnyCupcake! and <br> <strong>test1</strong>'
-//   )
-//   funnyCupcake.success(
-//     '<div>this is a test funnyCupcake! and <br> <strong>test2</strong></div>',
-//     'test',
-//     {
-//       timeOut: 3000,
-//       showAnimationCallback() {
-//         console.log('test2')
-//       }
-//     }
-//   )
-//   funnyCupcake.success(
-//     '<div>this is a test funnyCupcake! and <br> <strong>test3</strong></div>',
-//     'test',
-//     {
-//       timeOut: 0
-//     }
-//   )
-// }
