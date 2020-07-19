@@ -29,7 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
-    "acorn": "^6.2.0",
+    "acorn": "^6.4.1",
     "autoprefixer": "^9.6.1",
     "eslint": "^5.16.0",
     "find-unused-sass-variables": "^0.3.1",
