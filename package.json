@@ -65,6 +65,6 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-order": "^2.0.0",
     "stylelint-scss": "^3.9.1",
-    "tar": "^4.4.10"
+    "tar": "^4.4.18"
   }
 }
